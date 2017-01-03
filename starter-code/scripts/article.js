@@ -7,8 +7,14 @@ function Article (options) {
    a placeholder for the object that will ultimately be
    passed in. Use all of the properties in blogArticles
    to populate the new Article data that we'll use.  */
-   this.title = options.title;
-};
+  this.title = options.title;
+  this.category = options.category;
+  this.author = options.author;
+  this.authorUrl = options.authorUrl;
+  this.publishedOn = options.publishedOn;
+  this.body = options.body;
+  // articles.push(this); <---constructor test
+}
 
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();

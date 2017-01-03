@@ -1,7 +1,7 @@
 var articles = [];
 
 function Article (options) {
-/* TODO: This is our Model constructor. It will take in
+/* DONE: This is our Model constructor. It will take in
    our source data from blogArticles and instantiate a
    new Object according to this new definition. options is
    a placeholder for the object that will ultimately be
@@ -19,16 +19,21 @@ function Article (options) {
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
   $newArticle.attr('data-category', this.category);
-  /* TODO: We also need to fill in:
-  1. author name
-  2. author url
-  3. article title
-  4. article body
-  5. publication*/
+  /* DONE: We also need to fill in:data-category */
+  // 1. author name
+  $newArticle.find('address > a').text(this.author);
+  // 2. author url
+  $newArticle.find('address > a').attr('href', this.authorUrl);
+  // 3. article title
+  $newArticle.find('header > h1').html(this.title);
+  // 4. article body
+  $newArticle.find('.article-body').html(this.body);
+  // 5. publication
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
   $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
-/* TODO: This cloned article is no longer a template, as it now
+/* DONE: This cloned article is no longer a template, as it now
 has real data attached to it. Remove the class from this new article! */
+  $('article').removeClass('template');
   return $newArticle;
 };
 
